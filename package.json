@@ -9,6 +9,10 @@
     "node": "18.17.0",
     "yarn": "1.22.11"
   },
+  "engines": {
+    "node": "18.17.0",
+    "yarn": "1.22.11"
+  },
   "scripts": {
     "start": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js && node ./dist/index.js",
     "start:watch": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --watch=forever & nodemon dist/index.js",
