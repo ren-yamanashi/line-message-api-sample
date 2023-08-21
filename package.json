@@ -10,8 +10,7 @@
     "yarn": "1.22.11"
   },
   "engines": {
-    "node": "18.17.0",
-    "yarn": "1.22.11"
+    "node": "18.17.0"
   },
   "scripts": {
     "start": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js && node ./dist/index.js",
