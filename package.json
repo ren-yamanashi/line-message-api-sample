@@ -1,0 +1,18 @@
+{
+  "name": "line-messaging-api-sample",
+  "version": "1.0.0",
+  "description": "This is sample using the LINE Messaging Api",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "volta": {
+    "node": "18.17.0",
+    "yarn": "1.22.11"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
