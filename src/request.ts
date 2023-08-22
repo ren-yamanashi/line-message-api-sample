@@ -19,5 +19,5 @@ export const createRequestMsg = (req: BasicLineRequestMessage): string => {
 // TODO: ドキュメントリンクを載せる
 export const requestHeader = {
   'Content-Type': 'application/json',
-  Authorization: 'Bearer ' + process.env.LINE_ACCESS_TOKEN,
+  Authorization: 'Bearer ' + process.env.CHANNEL_ACCESS_TOKEN,
 };
