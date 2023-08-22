@@ -5,6 +5,16 @@
   <br />
   <br />
 
+# 備考
+
+このプロジェクトは、サーバーをデプロイする手順は示していません。  
+[Heroku](https://jp.heroku.com/)や [Render](https://render.com/)などを使用して、作成したサーバーをデプロイしてください。
+
+[デプロイ後の手順(Webhook の設定など)](https://developers.line.biz/ja/docs/messaging-api/nodejs-sample/#prepare-channel)
+
+<br />
+<br />
+
 # 初期起動
 
 ### 0. Git からダウンロード
@@ -136,10 +146,3 @@ make cancel_default_rich_menu
 # response
 "{}"
 ```
-
-# 備考
-
-このプロジェクトは、サーバーをデプロイする手順は示していません。  
-Heroku(有料)や Render(無料)などを使用して、作成したサーバーをデプロイしてください。
-
-[デプロイ後の手順(Webhook の設定など)](https://developers.line.biz/ja/docs/messaging-api/nodejs-sample/#prepare-channel)
