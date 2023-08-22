@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "This is sample using the LINE Messaging Api",
   "main": "dist/index.js",
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "volta": {
     "node": "18.17.0",
     "yarn": "1.22.11"
