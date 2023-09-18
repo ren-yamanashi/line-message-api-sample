@@ -21,10 +21,14 @@ app.get('/', (_, res) => {
   res.sendStatus(200);
 });
 
-app.post('/webhook', function (req: Request) {
-  console.log('🚀 ~ file: index.ts:24 ~ req:', req);
+app.post('/webhook', function (req: Request, res) {
   const requestBody: unknown = req.body;
-  if (!isLineRequestEvent(requestBody)) return;
+  if (!isLineRequestEvent(requestBody)) {
+    res.send('hello world!');
+    res.send(req.body);
+    res.end();
+    return;
+  }
 
   const requestEvent = requestBody.events[0];
   // NOTE: ユーザーがボットにメッセージを送った場合、応答メッセージを送る
