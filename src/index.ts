@@ -21,44 +21,64 @@ app.get('/', (_, res) => {
   res.sendStatus(200);
 });
 
-app.post('/webhook', function (req: Request, res) {
+app.post('/webhook', function (req: Request) {
+  console.log('🚀 ~ file: index.ts:25 ~ req:', req);
   const requestBody: unknown = req.body;
-  if (!isLineRequestEvent(requestBody)) {
-    res.send('hello world!');
-    res.send(req.body);
-    res.end();
-    return;
-  }
 
-  const requestEvent = requestBody.events[0];
-  // NOTE: ユーザーがボットにメッセージを送った場合、応答メッセージを送る
-  if (requestEvent.type === 'message') {
-    const responseMsg = createRequestMsg(requestEvent);
+  const webhookOptions: HttpRequestOptions = {
+    hostname: 'script.google.com',
+    path: '/macros/s/AKfycbxF_YDCOpRB1SNT8aw1v62d7b8ob8QzvdU3UPk2kjAU_sLegGDzF7pQ8p-rLbDb2Yoz/exec',
+    method: HTTP_METHOD.POST,
+    headers: requestHeader,
+    body: '{"key":"value"}',
+  };
 
-    // TODO: Node.jsのドキュメント通りの型にする
-    const webhookOptions: HttpRequestOptions = {
-      hostname: client.hostname,
-      path: client.path,
-      method: HTTP_METHOD.POST,
-      headers: requestHeader,
-      body: responseMsg,
-    };
+  // NOTE: リクエストの定義
+  const request = https.request(webhookOptions, (res) => {
+    res.on('data', (d) => {
+      process.stdout.write(d);
+    });
+  });
+  // TODO: エラーハンドリング
+  request.on('error', (err) => {
+    console.error(err);
+  });
 
-    // NOTE: リクエストの定義
-    const request = https.request(webhookOptions, (res) => {
-      res.on('data', (d) => {
-        process.stdout.write(d);
+  // NOTE: リクエストを送信
+  request.write('hello webhook');
+  request.end();
+
+  if (isLineRequestEvent(requestBody)) {
+    const requestEvent = requestBody.events[0];
+    // NOTE: ユーザーがボットにメッセージを送った場合、応答メッセージを送る
+    if (requestEvent.type === 'message') {
+      const responseMsg = createRequestMsg(requestEvent);
+
+      // TODO: Node.jsのドキュメント通りの型にする
+      const webhookOptions: HttpRequestOptions = {
+        hostname: client.hostname,
+        path: client.path,
+        method: HTTP_METHOD.POST,
+        headers: requestHeader,
+        body: responseMsg,
+      };
+
+      // NOTE: リクエストの定義
+      const request = https.request(webhookOptions, (res) => {
+        res.on('data', (d) => {
+          process.stdout.write(d);
+        });
       });
-    });
 
-    // TODO: エラーハンドリング
-    request.on('error', (err) => {
-      console.error(err);
-    });
+      // TODO: エラーハンドリング
+      request.on('error', (err) => {
+        console.error(err);
+      });
 
-    // NOTE: リクエストを送信
-    request.write(responseMsg);
-    request.end();
+      // NOTE: リクエストを送信
+      request.write(responseMsg);
+      request.end();
+    }
   }
 });
 
