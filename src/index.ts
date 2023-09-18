@@ -17,10 +17,12 @@ app.use(
 );
 
 app.get('/', (_, res) => {
+  console.log('test');
   res.sendStatus(200);
 });
 
 app.post('/webhook', function (req: Request) {
+  console.log('🚀 ~ file: index.ts:24 ~ req:', req);
   const requestBody: unknown = req.body;
   if (!isLineRequestEvent(requestBody)) return;
 
